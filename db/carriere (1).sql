@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : jeu. 03 nov. 2022 à 10:42
+-- Généré le : jeu. 03 nov. 2022 à 13:15
 -- Version du serveur : 5.7.33
 -- Version de PHP : 7.4.19
 
@@ -35,6 +35,14 @@ CREATE TABLE `addresses` (
   `town` varchar(39) COLLATE utf8_bin NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Déchargement des données de la table `addresses`
+--
+
+INSERT INTO `addresses` (`id`, `street`, `complement`, `zipcode`, `town`) VALUES
+(1, 'Rue Gustave Charpentier', NULL, '35700', 'Rennes'),
+(2, 'rue de la madeleine', 'dl', '52189', 'sdiufbu');
+
 -- --------------------------------------------------------
 
 --
@@ -50,6 +58,14 @@ CREATE TABLE `concessions` (
   `adress_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
+--
+-- Déchargement des données de la table `concessions`
+--
+
+INSERT INTO `concessions` (`id`, `name`, `siret`, `license`, `phone`, `adress_id`) VALUES
+(1, 'Concession de Rennes', '123', '123', '060606', 1),
+(4, 'Concession super', '156', '156', '666666', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -64,6 +80,13 @@ CREATE TABLE `contacts` (
   `phone` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `concession_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `lastname`, `firstname`, `mail`, `phone`, `concession_id`) VALUES
+(1, 'ZUNIGA', 'Luis', 'luiszu7779gmail.com', '0601020304', 1);
 
 -- --------------------------------------------------------
 
@@ -140,6 +163,37 @@ CREATE TABLE `mines` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
+-- Déchargement des données de la table `mines`
+--
+
+INSERT INTO `mines` (`id`, `name`, `longitude`, `latitude`, `concession_id`) VALUES
+(1, 'Mine de Rennes', '15.000000000000', '16.000000000000', 1),
+(2, 'nom de la mine mis à jour', '20.000000000000', '1.000000000000', 1),
+(4, 'Mine de test', '20.000000000000', '1.000000000000', 1),
+(5, 'Mine de testssssssssssssssssssss', '20.000000000000', '1.000000000000', 1),
+(6, 'Mine de testssssssssssssssssssss', '20.000000000000', '1.000000000000', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `email` varchar(255) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'Luis ZUNIGA', 'luiszu7779@gmail.com', '24b86c11ff175768d59a68df97f9c116');
+
+--
 -- Index pour les tables déchargées
 --
 
@@ -198,6 +252,12 @@ ALTER TABLE `mines`
   ADD KEY `id_concessions` (`concession_id`);
 
 --
+-- Index pour la table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -205,19 +265,19 @@ ALTER TABLE `mines`
 -- AUTO_INCREMENT pour la table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `concessions`
 --
 ALTER TABLE `concessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `equipments`
@@ -241,7 +301,13 @@ ALTER TABLE `impacts`
 -- AUTO_INCREMENT pour la table `mines`
 --
 ALTER TABLE `mines`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
