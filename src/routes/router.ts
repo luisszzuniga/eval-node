@@ -20,7 +20,7 @@ router.post("/mines/add", (request: Request, response: Response) => {
 router.put("/mines/update/:id", (request: Request, response: Response) => {
     minesController.update(request, response);
 });
-router.delete("/mines/delete", (request: Request, response: Response) => {
+router.delete("/mines/delete/:id", (request: Request, response: Response) => {
     minesController.delete(request, response);
 });
 //Fin mines
@@ -38,9 +38,17 @@ router.post("/concessions/add", (request: Request, response: Response) => {
 router.put("/concessions/update/:id", (request: Request, response: Response) => {
     concessionsController.update(request, response);
 });
-router.delete("/concessions/delete", (request: Request, response: Response) => {
+router.delete("/concessions/delete/:id", (request: Request, response: Response) => {
     concessionsController.delete(request, response);
 });
+//Voir toutes les mines d'une concession
+router.get("/concessions/show/mines/:id", (request: Request, response: Response) => {
+    concessionsController.showMines(request, response);
+});
+//Voir tous les contacts d'une concession
+router.get("/concessions/show/contacts/:id", (request: Request, response: Response) => {
+    concessionsController.showContacts(request, response);
+})
 //Fin concessions
 
 export { router };
