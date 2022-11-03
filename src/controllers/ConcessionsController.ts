@@ -38,7 +38,7 @@ class ConcessionsController extends CrudController
             })
             .catch((error: Error) => {
                 console.log(error);
-                response.json({"error": "Impossible de créér la concession."}); 
+                response.json({"error": "Impossible de créér la concession. NB: Chaque concession doit avoir son adresse unique."}); 
             })
     }
 
