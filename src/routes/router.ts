@@ -49,6 +49,10 @@ router.get("/concessions/show/mines/:id", (request: Request, response: Response)
 router.get("/concessions/show/contacts/:id", (request: Request, response: Response) => {
     concessionsController.showContacts(request, response);
 })
+//Voir la concession + ses contacts + ses mines
+router.get("/concessions/all/:id", (request: Request, response: Response) => {
+    concessionsController.showAll(request, response);
+})
 //Fin concessions
 
 export { router };

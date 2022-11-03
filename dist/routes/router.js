@@ -48,3 +48,7 @@ router.get("/concessions/show/mines/:id", (request, response) => {
 router.get("/concessions/show/contacts/:id", (request, response) => {
     ConcessionsController_1.concessionsController.showContacts(request, response);
 });
+//Voir la concession + ses contacts + ses mines
+router.get("/concessions/all/:id", (request, response) => {
+    ConcessionsController_1.concessionsController.showAll(request, response);
+});

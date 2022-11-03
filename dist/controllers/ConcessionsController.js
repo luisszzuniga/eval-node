@@ -80,5 +80,15 @@ class ConcessionsController extends CrudController_1.CrudController {
             response.json({ "error": "Impossible de récupérer les contacts de cette concession." });
         });
     }
+    showAll(request, response) {
+        Concession_1.Concession.findOne({ where: { id: request.params.id }, include: [Mine_1.Mine, Contact_1.Contact] })
+            .then((concession) => {
+            response.json(concession);
+        })
+            .catch((error) => {
+            console.log(error);
+            response.json({ "error": "Impossible de récupérer la concession, ses mines et ses contacts" });
+        });
+    }
 }
 exports.concessionsController = new ConcessionsController;
